@@ -1,9 +1,9 @@
-import { NEWS } from '@/dummy_news'
+import { DUMMY_NEWS } from '@/dummy_news'
 import { notFound } from 'next/navigation'
 
 export default function NewsDetailPage({ params }) {
   const newsSlug = params.slug
-  const newsItem = NEWS.find(item => item.slug === newsSlug)
+  const newsItem = DUMMY_NEWS.find(item => item.slug === newsSlug)
 
   if (!newsItem) {
     notFound() // This will trigger the not-found page for this route
