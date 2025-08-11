@@ -32,6 +32,15 @@ export default function FilteredNewsPage({ params }) {
     newsContent = <NewsList news={news} />
   }
 
+  if (
+    // Plus sign is used to convert string to number so that we dont get type mismatch
+    (selectedYear && !getAvailableNewsYears().includes(+selectedYear)) ||
+    (selectedMonth &&
+      !getAvailableNewsMonths(selectedYear).includes(+selectedMonth))
+  ) {
+    throw new Error('Invalid filer.')
+  }
+
   return (
     <>
       <header id='archive-header'>
