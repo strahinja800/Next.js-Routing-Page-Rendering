@@ -1,8 +1,12 @@
-import { DUMMY_NEWS } from '@/dummy_news'
-import { notFound } from 'next/navigation'
+'use client'
 
-export default async function InterceptedImagePage({ params }) {
-  const imageSlug = (await params).slug
+import { DUMMY_NEWS } from '@/dummy_news'
+import { notFound, useRouter } from 'next/navigation'
+
+export default function InterceptedImagePage({ params }) {
+  const router = useRouter()
+
+  const imageSlug = params.slug
   const newsItem = DUMMY_NEWS.find(item => item.slug === imageSlug)
 
   if (!newsItem) {
@@ -11,7 +15,10 @@ export default async function InterceptedImagePage({ params }) {
 
   return (
     <>
-      <div className='modal-backdrop' />
+      <div
+        className='modal-backdrop'
+        onClick={router.back}
+      />
       <dialog
         className='modal'
         open
