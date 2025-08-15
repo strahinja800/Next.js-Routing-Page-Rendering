@@ -193,3 +193,22 @@ ul {
   text-align: center;
   margin-top: 3rem;
 }
+
+.fullscreen-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 60vh;
+  padding: 1rem;
+}
+
+.fullscreen-image img {
+  max-width: 90vw;
+  max-height: 80vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.6);
+}
