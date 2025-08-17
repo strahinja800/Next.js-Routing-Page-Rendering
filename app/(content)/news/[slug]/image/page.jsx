@@ -1,9 +1,9 @@
-import { DUMMY_NEWS } from '@/dummy_news'
+import { getNewsItem } from '@/lib/news'
 import { notFound } from 'next/navigation'
 
-export default function ImagePage({ params }) {
+export default async function ImagePage({ params }) {
   const imageSlug =  params.slug
-  const newsItem = DUMMY_NEWS.find(item => item.slug === imageSlug)
+  const newsItem = await getNewsItem(imageSlug)
 
   if (!newsItem) {
     notFound() // This will trigger the not-found page for this route

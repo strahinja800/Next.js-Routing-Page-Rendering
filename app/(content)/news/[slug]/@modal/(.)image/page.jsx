@@ -1,13 +1,10 @@
-'use client'
+import { ModalBackdrop } from '@/components/modal_backdrop'
+import { getNewsItem } from '@/lib/news'
+import { notFound } from 'next/navigation'
 
-import { DUMMY_NEWS } from '@/dummy_news'
-import { notFound, useRouter } from 'next/navigation'
-
-export default function InterceptedImagePage({ params }) {
-  const router = useRouter()
-
-  const imageSlug = params.slug
-  const newsItem = DUMMY_NEWS.find(item => item.slug === imageSlug)
+export default async function InterceptedImagePage({ params }) {
+  const imageSlug = await params.slug
+  const newsItem = await getNewsItem(imageSlug)
 
   if (!newsItem) {
     notFound() // This will trigger the not-found page for this route
@@ -15,10 +12,7 @@ export default function InterceptedImagePage({ params }) {
 
   return (
     <>
-      <div
-        className='modal-backdrop'
-        onClick={router.back}
-      />
+      <ModalBackdrop />
       <dialog
         className='modal'
         open
